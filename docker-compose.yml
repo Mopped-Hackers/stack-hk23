@@ -14,12 +14,13 @@ services:
 
   api:
     image: ghcr.io/mopped-hackers/be-api-hk23
+    restart: always
     ports:
       - 8000:8000
     environment:
-      - DEV_SQL_STRING="postgresql://postgres:password@vps.andrejvysny.sk/postgres"
-      - PROD_SQL_STRING="postgresql://postgres:password@vps.andrejvysny.sk/postgres"
-      - LOG_CONFIG_FILENAME="logging_config.yaml"
+      DEV_SQL_STRING: postgresql://postgres:password@vps.andrejvysny.sk/postgres
+      PROD_SQL_STRING: postgresql://postgres:password@vps.andrejvysny.sk/postgres
+      LOG_CONFIG_FILENAME: logging_config.yaml
     
 
 volumes:
