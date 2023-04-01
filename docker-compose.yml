@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgis/postgis
+    restart: always
+    ports:
+     - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+     - db:/var/lib/postgresql/data
+
+  api:
+    image: ghcr.io/mopped-hackers/be-api-hk23
+    ports:
+      - 8000:8000
+    environment:
+      - DEV_SQL_STRING="postgresql://postgres:password@vps.andrejvysny.sk/postgres"
+      - PROD_SQL_STRING="postgresql://postgres:password@vps.andrejvysny.sk/postgres"
+      - LOG_CONFIG_FILENAME="logging_config.yaml"
+    
+
+volumes:
+   db:
