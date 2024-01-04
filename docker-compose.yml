@@ -2,15 +2,16 @@ version: '3.1'
 
 services:
 
-  db:
-    image: postgis/postgis
+  database:
+#    image: postgis/postgis - without any data
+    image: ghcr.io/mopped-hackers/stack-hk23:kosice # with demo data for Kosice
     restart: always
     ports:
      - 5432:5432
     environment:
       POSTGRES_PASSWORD: password
     volumes:
-     - db:/var/lib/postgresql/data
+     - db-data:/var/lib/postgresql/data
 
 
   fe: 
@@ -25,10 +26,10 @@ services:
     ports:
       - 8000:8000
     environment:
-      DEV_SQL_STRING: postgresql://postgres:password@vps.andrejvysny.sk/postgres
-      PROD_SQL_STRING: postgresql://postgres:password@vps.andrejvysny.sk/postgres
+      DEV_SQL_STRING: postgresql://postgres:password@database/postgres
+      PROD_SQL_STRING: postgresql://postgres:password@database/postgres
       LOG_CONFIG_FILENAME: logging_config.yaml
     
 
 volumes:
-   db:
+   db-data:
