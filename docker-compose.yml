@@ -4,7 +4,7 @@ services:
 
   database:
 #    image: postgis/postgis - without any data
-    image: ghcr.io/mopped-hackers/stack-hk23:kosice # with demo data for Kosice
+    image: ghcr.io/mopped-hackers/stack-hk23:database # with demo data for Kosice
     restart: always
     ports:
      - 5432:5432
