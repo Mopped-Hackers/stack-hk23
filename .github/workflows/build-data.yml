@@ -9,7 +9,7 @@ jobs:
       uses: andrejvysny/workflows/.github/workflows/docker_build_push_ghcr.yaml@main
       with:
         dockerfile: Dockerfile   #optional - path to dockerfile - default "Dockerfile"
-        context: ./docker/      #optional - default "."
+        context: ./.docker/      #optional - default "."
         #target: production         #optional
         tags: ghcr.io/mopped-hackers/stack-hk23:database
       secrets:
